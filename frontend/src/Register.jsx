@@ -6,6 +6,7 @@ function Register() {
     email: '',
     password: ''
   });
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData(prev => ({
@@ -16,24 +17,36 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const res = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
+  
       const data = await res.json();
-      console.log('Register response:', data);
+  
+      if (res.ok) {
+        setSuccess(true);
+        setFormData({ name: '', email: '', password: '' }); // clear form
+      } else {
+        console.error(data.message);
+      }
+  
     } catch (err) {
       console.error('Error registering:', err);
     }
   };
+  
 
   return (
     <div style={{ padding: '2rem' }}>
       <h2>Register</h2>
+      {success && (
+  <p style={{ color: 'green' }}>Registration successful!</p>
+)}
+
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
