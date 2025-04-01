@@ -6,6 +6,7 @@ import Restaurants from './Restaurants';
 import Register from './Register';
 import PrivateRoute from './PrivateRoute';
 import MyOrders from './MyOrders';
+import Cart from './Cart';
 
 
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/restaurants" element={<PrivateRoute><Restaurants /></PrivateRoute>} />
         <Route path="/register" element={<Register />} />
         <Route path="/my-orders" element={<PrivateRoute><MyOrders /></PrivateRoute>} />
+        <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
 
 
       </Routes>
