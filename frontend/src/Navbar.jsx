@@ -19,13 +19,17 @@ function Navbar() {
   <li><Link to="/restaurants">Restaurants</Link></li>
 
   {!token ? (
-    <>
-      <li><Link to="/login">Login</Link></li>
-      <li><Link to="/register">Register</Link></li>
-    </>
-  ) : (
+  <>
+    <li><Link to="/login">Login</Link></li>
+    <li><Link to="/register">Register</Link></li>
+  </>
+) : (
+  <>
+    <li><Link to="/my-orders">My Orders</Link></li>
     <li><button onClick={handleLogout}>Logout</button></li>
-  )}
+  </>
+)}
+
 </ul>
 
     </nav>
