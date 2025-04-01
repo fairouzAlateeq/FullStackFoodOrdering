@@ -4,6 +4,7 @@ import Home from './Home';
 import Login from './Login';
 import Restaurants from './Restaurants';
 import Register from './Register';
+import PrivateRoute from './PrivateRoute';
 
 
 
@@ -14,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/restaurants" element={<Restaurants />} />
+        <Route path="/restaurants" element={<PrivateRoute><Restaurants /></PrivateRoute>} />
         <Route path="/register" element={<Register />} />
 
       </Routes>
