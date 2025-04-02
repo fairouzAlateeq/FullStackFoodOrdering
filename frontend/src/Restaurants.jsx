@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 function Restaurants() {
   const [restaurants, setRestaurants] = useState([]); // ✅ added this line
   const [menuItems, setMenuItems] = useState({});
+  const [successMessage, setSuccessMessage] = useState('');
+
 
   useEffect(() => {
     // ✅ fetch all restaurants, then fetch their menu items
@@ -43,6 +45,11 @@ function Restaurants() {
 
       const data = await res.json();
       console.log('Item added:', data);
+      setSuccessMessage('Item added to cart!');
+setTimeout(() => {
+  setSuccessMessage('');
+}, 2000); 
+
     } catch (err) {
       console.error('Error adding to cart:', err);
     }
@@ -51,7 +58,9 @@ function Restaurants() {
   return (
     <div style={{ padding: '2rem' }}>
       <h2>Browse Restaurants</h2>
-
+      {successMessage && (
+  <p style={{ color: 'green', marginBottom: '1rem' }}>{successMessage}</p>
+)}
       {restaurants.map((r) => (
         <div
           key={r._id}
@@ -60,7 +69,6 @@ function Restaurants() {
           <h3>{r.name}</h3>
           <p>{r.description}</p>
 
-          {/* ✅ menu items for this restaurant */}
           <h4>Menu</h4>
           {menuItems[r._id] ? (
             menuItems[r._id].map((item) => (

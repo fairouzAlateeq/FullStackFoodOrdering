@@ -34,6 +34,12 @@ function Cart() {
     }
   };
 
+  const getTotal = () => {
+    return cart.reduce((sum, item) => {
+      return sum + item.menuItem.price * item.quantity;
+    }, 0);
+  };
+
   return (
     <div style={{ padding: '2rem' }}>
       <h2>Cart</h2>
@@ -45,11 +51,13 @@ function Cart() {
         <>
           <ul>
             {cart.map(item => (
-              <li key={item._id}>
-                {item.menuItem.name} x {item.quantity}
+              <li key={item._id} style={{ marginBottom: '1rem' }}>
+                <strong>{item.menuItem.name}</strong> x {item.quantity} — ${item.menuItem.price.toFixed(2)}
               </li>
             ))}
           </ul>
+
+          <h3>Total: ${getTotal().toFixed(2)}</h3>
           <button onClick={handleCheckout}>Place Order</button>
         </>
       )}
