@@ -7,6 +7,7 @@ import Register from './Register';
 import PrivateRoute from './PrivateRoute';
 import MyOrders from './MyOrders';
 import Cart from './Cart';
+import AdminDashboard from './AdminDashboard';
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/my-orders" element={<PrivateRoute><MyOrders /></PrivateRoute>} />
         <Route path="/cart" element={<PrivateRoute><Cart /></PrivateRoute>} />
+        <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
 
 
       </Routes>
